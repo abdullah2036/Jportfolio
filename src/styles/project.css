@@ -34,6 +34,17 @@
   align-items: start;
 }
 
+/* a website project: the description comes first in reading order (on the
+   right in Arabic, on the left in English, on top on narrow screens), then
+   the live site */
+.feature--site .feature__main {
+  grid-template-columns: minmax(0, 43fr) minmax(0, 54fr);
+}
+
+.feature--site .feature__info {
+  order: -1;
+}
+
 .feature__media .slot {
   aspect-ratio: 4 / 4.9;
   max-height: calc(100svh - var(--header-h) - 150px);
@@ -504,9 +515,8 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  /* a website project: say what it is first, then show the live site */
-  .feature--site .feature__info {
-    order: -1;
+  .feature--site .feature__main {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .feature__media .slot,
