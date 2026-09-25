@@ -134,16 +134,19 @@ and `src/lib/motion.js`.
   - Titles roll up out of a mask, and descriptions un-blur word by word.
   - Chapter cards are sorted onto the page from a stack every time the contents come into
     view, and project and edition counts count up.
-  - Between About Me and the contents, the page tears open as you scroll to reveal the
-    cover's scene behind it (it uses the cover photo once one is uploaded).
+  - Between About Me and the contents, a window in the page opens out smoothly when it
+    comes into view, showing the cover's scene behind the page (it uses the cover photo
+    once one is uploaded). The scene stays put while the page glides over it.
   - List rows fill with a burgundy wipe on hover, and a hairline slides under the menu.
   - The series topics light up in turn as you scroll past the artwork, which opens
     out from a card. Once images are tagged with topics, the artwork swaps to match.
   - The cover image shrinks into a card as you scroll, and the header condenses.
-  - The four supporting images widen on hover (accordion), and archive pieces arc in.
+  - A project's other images sit in a gallery carousel at its foot: arrows, mouse drag or
+    swipe, snapping slide by slide. In Edit Mode, **إضافة إطار / Add frame** adds more.
+    Archive pieces arc in.
 - **On phones** the mouse effects have touch versions:
   - The cover scene tilts with the phone where the browser allows it, and drifts slowly on its own otherwise.
-  - Chapter cards lean as they scroll past, and the supporting images become a swipeable strip.
+  - Chapter cards lean as they scroll past, and the project gallery runs edge to edge.
   - Buttons ripple where they are tapped, and list rows fill while pressed.
   - Tapping the name makes it ripple, and a tap on the paper lets a couple of petals fall.
 - Devices set to **reduce motion** get a calm, still version automatically.
@@ -155,9 +158,9 @@ and `src/lib/motion.js`.
 | Header, language, search    | `Header`, `LanguageSwitcher`, `SearchOverlay` | `header.css`    |
 | 01 Cover                    | `Hero`, `DuskScene`                | `hero.css`                 |
 | About Me (after the cover)  | `About`                            | `about.css`                |
-| Torn-open banner            | `Vista`                            | `motion-refs.css`          |
+| Banner behind the page      | `Vista`                            | `motion-refs.css`          |
 | 02 Table of Contents        | `TableOfContents`                  | `contents.css`             |
-| 03 Single project           | `ProjectFeature`, `ProjectBar`     | `project.css`              |
+| 03 Single project           | `ProjectFeature`, `ProjectBar`, `Gallery` | `project.css`       |
 | 04 Series / collection      | `ProjectSeries`                    | `project.css`              |
 | 05 Archive + image viewer   | `Archive`, `Lightbox`              | `archive.css`              |
 | Website preview             | `SitePreview`                      | `project.css`              |

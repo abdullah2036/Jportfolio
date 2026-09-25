@@ -85,8 +85,8 @@ export default function Header() {
 
   const links = [
     ['', t.nav.home],
-    ['work', t.nav.work],
     ['about', t.nav.about],
+    ['work', t.nav.work],
     ['contact', t.nav.contact],
   ];
 
