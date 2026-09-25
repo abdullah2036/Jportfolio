@@ -1,0 +1,548 @@
+/* ------------------------------------------------------------------
+   Edit Mode. None of this is visible to visitors.
+   ------------------------------------------------------------------ */
+
+.is-editing body {
+  padding-bottom: 84px;
+}
+
+/* editable text */
+.editable {
+  outline: 1px dashed transparent;
+  outline-offset: 5px;
+  cursor: text;
+  transition: outline-color 0.2s var(--ease), background-color 0.2s var(--ease);
+  min-width: 1.5ch;
+}
+
+.editable:hover {
+  outline-color: rgba(149, 70, 96, 0.45);
+}
+
+.editable:focus {
+  outline: 1px solid rgba(149, 70, 96, 0.75);
+  background-color: rgba(255, 255, 255, 0.28);
+}
+
+.editable:empty::before {
+  content: attr(data-placeholder);
+  opacity: 0.38;
+}
+
+.archive .editable:hover {
+  outline-color: rgba(255, 245, 240, 0.55);
+}
+
+/* image placeholders */
+.slot__add {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 12px;
+  color: var(--burgundy);
+}
+
+.slot--empty .slot__add::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px dashed rgba(125, 38, 65, 0.36);
+  pointer-events: none;
+}
+
+.slot__plus {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(125, 38, 65, 0.45);
+  border-radius: 50%;
+  background: rgba(250, 246, 241, 0.88);
+  color: var(--burgundy);
+  transition: transform 0.35s var(--ease), background 0.35s var(--ease), color 0.35s var(--ease);
+}
+
+.slot__add:hover .slot__plus,
+.archive__add button:hover .slot__plus,
+.add-card:hover .slot__plus {
+  transform: scale(1.07);
+  background: var(--burgundy-btn);
+  color: #fff;
+}
+
+.slot__add-label {
+  padding: 3px 9px;
+  background: rgba(250, 246, 241, 0.88);
+  font-family: var(--font-label);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: var(--label-case);
+}
+
+:root[lang='ar'] .slot__add-label {
+  font-size: 13.5px;
+  letter-spacing: 0;
+}
+
+.slot__tools {
+  position: absolute;
+  z-index: 3;
+  bottom: 10px;
+  inset-inline-end: 10px;
+  display: flex;
+  gap: 6px;
+}
+
+.slot__tools button {
+  padding: 6px 11px;
+  background: rgba(250, 246, 241, 0.94);
+  color: var(--burgundy-ink);
+  font-family: var(--font-label);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: var(--label-case);
+  box-shadow: 0 4px 12px -6px rgba(40, 20, 20, 0.4);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+:root[lang='ar'] .slot__tools button {
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+.slot__tools button:hover {
+  background: var(--burgundy-btn);
+  color: #fff;
+}
+
+.slot--over {
+  outline: 2px solid var(--burgundy-btn);
+  outline-offset: -2px;
+}
+
+/* small text actions ("+ Add project") */
+.edit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 10px;
+  padding: 3px 0;
+  color: var(--burgundy);
+  font-family: var(--font-label);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: var(--label-case);
+  border-bottom: 1px dashed rgba(125, 38, 65, 0.4);
+  width: fit-content;
+}
+
+:root[lang='ar'] .edit-link {
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.edit-link--danger {
+  color: #8c3b3b;
+}
+
+.toc__add {
+  position: relative;
+  z-index: 2;
+}
+
+.add-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 34px;
+  padding: 22px 30px;
+  border: 1px dashed rgba(125, 38, 65, 0.4);
+  color: var(--burgundy);
+  font-family: var(--font-label);
+  letter-spacing: 0.12em;
+  text-transform: var(--label-case);
+  font-size: 12.5px;
+}
+
+/* the project settings row */
+.project-editor {
+  padding-top: 20px;
+}
+
+.project-editor__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 28px;
+  padding: 14px 18px;
+  border: 1px dashed rgba(125, 38, 65, 0.3);
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.project-editor__field {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.project-editor__field select {
+  padding: 4px 6px;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  background: transparent;
+  cursor: pointer;
+}
+
+.project-editor__link input {
+  width: min(280px, 60vw);
+  padding: 4px 6px;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  background: transparent;
+  font-size: 14px;
+}
+
+.project-editor__check input {
+  accent-color: var(--burgundy-btn);
+  width: 16px;
+  height: 16px;
+}
+
+.project-editor__spacer {
+  flex: 1;
+}
+
+.project-editor .edit-link {
+  margin-top: 0;
+}
+
+.seg {
+  display: inline-flex;
+  border: 1px solid rgba(125, 38, 65, 0.3);
+}
+
+.seg button {
+  padding: 5px 12px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.seg button[aria-pressed='true'] {
+  background: var(--burgundy-btn);
+  color: #fff;
+}
+
+/* archive tools */
+.archive__add {
+  height: 100%;
+  min-height: 220px;
+}
+
+.archive__add button {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  aspect-ratio: 3 / 4.05;
+  border: 1px dashed rgba(255, 245, 240, 0.55);
+  color: var(--cream-on-mauve);
+  font-family: var(--font-label);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: var(--label-case);
+  transition: background 0.3s var(--ease);
+}
+
+.archive__add.is-over button,
+.archive__add button:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.archive__tools {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.archive__tools input,
+.archive__tools select {
+  width: 100%;
+  padding: 3px 4px;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 245, 240, 0.35);
+  background: transparent;
+  color: inherit;
+  color-scheme: dark;
+}
+
+.archive__tools select option {
+  color: var(--ink);
+}
+
+.archive__tool-row {
+  display: flex;
+  gap: 4px;
+}
+
+.archive__tool-row button {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 28px;
+  border: 1px solid rgba(255, 245, 240, 0.3);
+  transition: background 0.3s var(--ease);
+}
+
+.archive__tool-row button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.archive__tool-row button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* the edit bar */
+.editbar {
+  position: fixed;
+  z-index: 90;
+  bottom: 16px;
+  inset-inline: 0;
+  width: max-content;
+  max-width: calc(100% - 24px);
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 26px;
+  padding: 10px 10px 10px 18px;
+  padding-inline: 18px 10px;
+  background-color: var(--paper-light);
+  background-image: var(--grain);
+  border: 1px solid var(--hairline);
+  box-shadow: 0 22px 44px -26px rgba(60, 30, 30, 0.55);
+  font-family: var(--font-label);
+  font-size: 13px;
+  animation: editbar-in 0.5s var(--ease-out) both;
+}
+
+@keyframes editbar-in {
+  from {
+    translate: 0 20px;
+    opacity: 0;
+  }
+}
+
+.editbar__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.editbar__status strong {
+  font-weight: 500;
+  color: var(--burgundy-ink);
+}
+
+.editbar__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--burgundy-btn);
+  box-shadow: 0 0 0 4px rgba(149, 70, 96, 0.16);
+}
+
+.editbar__hint {
+  color: var(--muted);
+}
+
+.editbar__hint.is-warning {
+  color: #9b3434;
+}
+
+.editbar__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.editbar__actions button {
+  padding: 7px 12px;
+  color: var(--ink-soft);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.editbar__actions button:hover {
+  background: rgba(125, 38, 65, 0.07);
+  color: var(--burgundy);
+}
+
+.editbar__actions .editbar__done {
+  background: var(--burgundy-btn);
+  color: #fff;
+}
+
+.editbar__actions .editbar__done:hover {
+  background: var(--burgundy-btn-hover);
+  color: #fff;
+}
+
+@media (max-width: 700px) {
+  .editbar__hint {
+    display: none;
+  }
+}
+
+/* the password card */
+.lock {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.lock__backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background: rgba(52, 33, 35, 0.32);
+  animation: menu-in 0.3s var(--ease) both;
+}
+
+.lock__card {
+  position: relative;
+  width: min(100%, 360px);
+  padding: 28px 26px 24px;
+  background-color: var(--paper-light);
+  background-image: var(--grain), var(--fibers);
+  box-shadow: 0 30px 60px -30px rgba(50, 25, 25, 0.55);
+  animation: lock-in 0.5s var(--ease-out) both;
+}
+
+.lock__card.is-wrong {
+  animation: lock-shake 0.4s var(--ease);
+}
+
+@keyframes lock-in {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+    rotate: -1deg;
+  }
+}
+
+@keyframes lock-shake {
+  25% {
+    translate: -8px 0;
+  }
+  50% {
+    translate: 6px 0;
+  }
+  75% {
+    translate: -3px 0;
+  }
+}
+
+.lock__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-stretch: var(--display-stretch);
+  font-size: 26px;
+  color: var(--burgundy-ink);
+}
+
+.lock__hint {
+  margin-top: 6px;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+.lock__field input {
+  width: 100%;
+  margin-top: 18px;
+  padding: 10px 2px;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  background: transparent;
+  font-size: 17px;
+  outline: none;
+  transition: border-color 0.3s var(--ease);
+}
+
+.lock__field input:focus {
+  border-bottom-color: var(--burgundy-btn);
+}
+
+.lock__error {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #9b3434;
+}
+
+.lock__actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.lock__cancel {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.lock__enter {
+  min-height: 44px;
+  padding-block: 8px 9px;
+}
+
+/* small confirmation note (e.g. "Email copied") — visible to visitors too */
+.toast {
+  position: fixed;
+  z-index: 160;
+  bottom: 22px;
+  inset-inline: 0;
+  width: max-content;
+  max-width: calc(100% - 28px);
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 18px;
+  padding: 12px 18px;
+  background-color: var(--paper-light);
+  background-image: var(--grain);
+  border: 1px solid var(--hairline);
+  box-shadow: 0 22px 44px -24px rgba(60, 30, 30, 0.55);
+  font-size: 15px;
+  color: var(--ink);
+  animation: editbar-in 0.45s var(--ease-out) both;
+}
+
+.is-editing .toast {
+  bottom: 84px;
+}
+
+.toast__action {
+  color: var(--burgundy);
+  border-bottom: 1px solid currentColor;
+  font-weight: 500;
+}
+

@@ -1,0 +1,279 @@
+/* ---------- 06 · about / contact ---------- */
+
+.about {
+  --tilt: -2.2deg;
+  padding-block: clamp(70px, 8.5vw, 130px) clamp(36px, 5vw, 80px);
+  overflow: hidden;
+}
+
+[dir='rtl'] .about {
+  --tilt: 2.2deg;
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.02fr;
+  gap: clamp(30px, 5vw, 84px);
+  align-items: center;
+}
+
+.about__title {
+  margin-top: clamp(18px, 2.4vw, 30px);
+  font-size: clamp(46px, 5.5vw, 88px);
+  line-height: 0.98;
+}
+
+:root[lang='ar'] .about__title {
+  line-height: 1.22;
+}
+
+.about__intro {
+  margin-top: clamp(22px, 2.6vw, 34px);
+  max-width: 520px;
+}
+
+/* the one-line introduction: who she is */
+.about__lead {
+  font-family: var(--font-display);
+  font-stretch: var(--display-stretch);
+  font-weight: 450;
+  font-size: clamp(21px, 1.9vw, 27px);
+  line-height: 1.38;
+  color: var(--burgundy-ink);
+  white-space: pre-line;
+}
+
+:root[lang='ar'] .about__lead {
+  font-weight: 500;
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 1.7;
+}
+
+/* her fields: Industrial Chemistry × Media × Design × Leadership */
+.about__focus {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 0;
+  margin-top: 18px;
+  font-family: var(--font-label);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: var(--label-case);
+  color: var(--rose);
+  white-space: pre-line;
+}
+
+:root[lang='ar'] .about__focus {
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.about__focus li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.about__focus li + li::before {
+  content: '×';
+  margin-inline: 14px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.about__bio {
+  margin-top: clamp(22px, 2.6vw, 34px);
+  max-width: 480px;
+  font-size: 17.5px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.about__bio p + p {
+  margin-top: 18px;
+}
+
+.about__actions {
+  margin-top: clamp(28px, 3vw, 40px);
+}
+
+.about__social {
+  display: flex;
+  gap: 30px;
+  margin-top: 34px;
+  color: var(--ink);
+}
+
+.about__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  transition: color 0.3s var(--ease), translate 0.3s var(--ease);
+}
+
+a.about__icon:hover,
+button.about__icon:hover {
+  color: var(--burgundy);
+  translate: 0 -2px;
+}
+
+button.about__icon.is-unset {
+  opacity: 0.4;
+}
+
+/* the collage */
+.about__visual {
+  position: relative;
+  padding: 26px 0 120px;
+}
+
+.about__frame {
+  position: relative;
+  width: min(78%, 470px);
+  margin-inline-start: 6%;
+  padding: 22px 22px 26px;
+  background-color: var(--paper-frame);
+  background-image: var(--grain), var(--fibers);
+  transform: rotate(var(--tilt));
+  box-shadow: 0 1px 2px rgba(60, 40, 40, 0.14), 0 34px 56px -34px rgba(60, 35, 35, 0.5);
+}
+
+.about__frame .slot {
+  aspect-ratio: 4 / 5.15;
+}
+
+.about__tape {
+  top: -12px;
+  inset-inline-end: -52px;
+}
+
+[dir='rtl'] .about__tape {
+  transform: rotate(calc(var(--rot) * -1));
+}
+
+.about__sprig {
+  position: absolute;
+  z-index: 1;
+  width: clamp(110px, 11vw, 160px);
+  top: 20%;
+  inset-inline-end: 0;
+  pointer-events: none;
+}
+
+.about__note {
+  position: absolute;
+  z-index: 2;
+  bottom: 70px;
+  inset-inline-end: 4%;
+  width: clamp(170px, 15vw, 210px);
+}
+
+[dir='rtl'] .about__note,
+[dir='rtl'] .series__note {
+  transform: rotate(calc(var(--rot) * -1));
+}
+
+.about__note .note__sheet {
+  padding: 32px 22px 36px;
+}
+
+.about__note-text {
+  font-family: var(--font-display);
+  font-stretch: var(--display-stretch);
+  font-size: clamp(26px, 2.3vw, 33px);
+  line-height: 1.1;
+  color: #8b4b5d;
+  text-align: center;
+  white-space: pre-line;
+}
+
+:root[lang='ar'] .about__note-text {
+  line-height: 1.4;
+}
+
+.about__thanks {
+  position: absolute;
+  bottom: 6px;
+  inset-inline-start: 22%;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  transform: rotate(-7deg);
+}
+
+[dir='rtl'] .about__thanks {
+  transform: rotate(6deg);
+}
+
+.about__thanks-line {
+  width: 58px;
+  height: 1px;
+  background: var(--ink-soft);
+}
+
+.about__thanks .script {
+  font-size: clamp(32px, 3vw, 44px);
+  line-height: 0.95;
+  color: #3e2e30;
+}
+
+:root[lang='ar'] .about__thanks .script {
+  line-height: 1.45;
+  font-size: clamp(28px, 2.5vw, 36px);
+}
+
+@media (max-width: 900px) {
+  .about__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about__visual {
+    margin-top: 20px;
+    padding-bottom: 130px;
+  }
+
+  .about__frame {
+    width: min(82%, 420px);
+  }
+}
+
+@media (max-width: 600px) {
+  .about__frame {
+    width: 80%;
+    margin-inline-start: 2%;
+    padding: 14px 14px 18px;
+  }
+
+  .about__note {
+    width: 136px;
+    bottom: 52px;
+    inset-inline-end: 0;
+  }
+
+  .about__note .note__sheet {
+    padding: 22px 14px 26px;
+  }
+
+  .about__note-text {
+    font-size: 22px;
+  }
+
+  .about__sprig {
+    width: 92px;
+    top: 10%;
+  }
+
+  .about__thanks {
+    inset-inline-start: 8%;
+  }
+
+  .about__thanks .script {
+    font-size: 30px;
+  }
+
+  :root[lang='ar'] .about__thanks .script {
+    font-size: 26px;
+  }
+}

@@ -1,0 +1,74 @@
+/* ------------------------------------------------------------------
+   Arabic typeface — Thmanyah (ثمانية) · https://font.thmanyah.com
+   Free for personal and commercial use. Self-hosted from
+   public/fonts/thmanyah/ so the site never depends on another server.
+
+   Serif Display → headings · Serif Text → reading text · Sans → labels.
+   Change which family is used where in tokens.css (--font-*).
+   ------------------------------------------------------------------ */
+
+@font-face {
+  font-family: 'Thmanyah Serif Display';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/thmanyah/ThmanyahSerifDisplay-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Thmanyah Serif Display';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/thmanyah/ThmanyahSerifDisplay-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Thmanyah Serif Display';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/thmanyah/ThmanyahSerifDisplay-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Thmanyah Serif Text';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/thmanyah/ThmanyahSerifText-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Thmanyah Serif Text';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/thmanyah/ThmanyahSerifText-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Thmanyah Serif Text';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/thmanyah/ThmanyahSerifText-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Thmanyah Sans';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/thmanyah/ThmanyahSans-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Thmanyah Sans';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/thmanyah/ThmanyahSans-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Thmanyah Sans';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/thmanyah/ThmanyahSans-Bold.woff2') format('woff2');
+}

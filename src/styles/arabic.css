@@ -1,0 +1,81 @@
+/* ------------------------------------------------------------------
+   Arabic refinements.
+   Arabic reads smaller than Latin at the same pixel size and needs
+   more line spacing, so reading text is set a step larger here.
+   ------------------------------------------------------------------ */
+
+:root[lang='ar'] .site-header__nav {
+  font-size: 19px;
+}
+
+:root[lang='ar'] .btn {
+  font-size: 19.5px;
+}
+
+:root[lang='ar'] .toc__intro {
+  font-size: clamp(19px, 1.5vw, 22px);
+  line-height: 1.85;
+}
+
+:root[lang='ar'] :is(.feature__desc, .series__desc, .about__bio) {
+  font-size: clamp(19px, 1.45vw, 21px);
+  line-height: 1.9;
+}
+
+:root[lang='ar'] :is(.feature__meta, .series__meta) {
+  font-size: 20px;
+}
+
+:root[lang='ar'] .feature__role-label {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+:root[lang='ar'] .feature__role {
+  font-size: 17.5px;
+}
+
+:root[lang='ar'] .chapter-label {
+  font-size: 15px;
+}
+
+:root[lang='ar'] .archive__back {
+  font-size: 18px;
+}
+
+:root[lang='ar'] .archive__select select {
+  font-size: 17.5px;
+}
+
+:root[lang='ar'] .archive__caption {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+:root[lang='ar'] .archive__cap-date {
+  font-size: 16px;
+}
+
+:root[lang='ar'] .viewer__caption {
+  font-size: 18px;
+}
+
+:root[lang='ar'] .chapter-index__meta {
+  font-size: 16.5px;
+}
+
+:root[lang='ar'] .search__title,
+:root[lang='ar'] .chapter-index__title {
+  line-height: 1.4;
+}
+
+:root[lang='ar'] .colophon .label {
+  font-size: 14.5px;
+}
+
+/* Arabic-Indic numerals sit better in the label face */
+:root[lang='ar'] .toc__num,
+:root[lang='ar'] .chapter-index__num {
+  font-family: var(--font-label);
+  font-size: 18px;
+}

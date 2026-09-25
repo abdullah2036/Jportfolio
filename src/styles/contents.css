@@ -1,0 +1,214 @@
+/* ---------- 02 · table of contents ---------- */
+
+.toc {
+  padding-block: clamp(64px, 8.5vw, 120px) clamp(72px, 9vw, 130px);
+}
+
+.toc__head {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  align-items: start;
+  gap: 40px;
+  margin-bottom: clamp(34px, 4.4vw, 62px);
+}
+
+.toc__title {
+  margin-top: clamp(16px, 2vw, 26px);
+  font-size: clamp(56px, 7.6vw, 122px);
+  line-height: 0.93;
+}
+
+:root[lang='ar'] .toc__title {
+  line-height: 1.12;
+}
+
+.toc__intro {
+  max-width: 410px;
+  margin-top: clamp(40px, 5.2vw, 78px);
+  font-size: clamp(16.5px, 1.3vw, 19px);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  white-space: pre-line;
+}
+
+.toc__rule {
+  display: block;
+  width: 52px;
+  height: 1px;
+  margin-top: 30px;
+  background: var(--ink-soft);
+  opacity: 0.6;
+}
+
+.toc__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 1.9vw, 28px) clamp(18px, 2.2vw, 34px);
+}
+
+.toc__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 41% 1fr auto;
+  min-height: clamp(146px, 12.8vw, 196px);
+  background-color: var(--paper-light);
+  background-image: var(--grain);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 18px 36px -32px rgba(70, 40, 40, 0.45);
+  transition: box-shadow 0.5s var(--ease), translate 0.5s var(--ease);
+}
+
+.toc__item:hover {
+  translate: 0 -3px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 26px 40px -30px rgba(70, 40, 40, 0.5);
+}
+
+.toc__thumb {
+  position: relative;
+}
+
+.toc__thumb .slot {
+  position: absolute;
+  inset: 0;
+}
+
+.toc__thumb .slot__img {
+  transition: opacity 0.8s var(--ease), scale 1.2s var(--ease-out);
+}
+
+.toc__item:hover .toc__thumb .slot__img {
+  scale: 1.045;
+}
+
+.toc__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 18px clamp(16px, 2.2vw, 34px);
+  min-width: 0;
+}
+
+.toc__num {
+  font-family: var(--font-display);
+  font-stretch: var(--display-stretch);
+  font-size: clamp(19px, 1.6vw, 24px);
+  line-height: 1.1;
+  color: var(--burgundy-ink);
+}
+
+.toc__name {
+  font-family: var(--font-display);
+  font-stretch: var(--display-stretch);
+  font-weight: 450;
+  font-size: clamp(24px, 2.35vw, 35px);
+  line-height: 1.06;
+  color: var(--burgundy-ink);
+}
+
+:root[lang='ar'] .toc__name {
+  font-weight: 500;
+  line-height: 1.35;
+  font-size: clamp(24px, 2.2vw, 33px);
+}
+
+.toc__count {
+  margin-top: clamp(12px, 1.4vw, 20px);
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: var(--label-case);
+  color: var(--rose);
+}
+
+:root[lang='ar'] .toc__count {
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.toc__link {
+  align-self: end;
+  padding: 0 clamp(16px, 2.2vw, 32px) clamp(22px, 2.3vw, 32px);
+  color: var(--ink);
+}
+
+.toc__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.toc__link .icon {
+  transition: translate 0.45s var(--ease);
+}
+
+.toc__item:hover .toc__link .icon {
+  translate: 5px 0;
+}
+
+[dir='rtl'] .toc__item:hover .toc__link .icon {
+  translate: -5px 0;
+}
+
+.is-editing .toc__link::after {
+  display: none;
+}
+
+.toc__script {
+  display: grid;
+  place-items: center;
+  min-height: 140px;
+}
+
+/* with an even number of chapters the closing line gets its own row */
+.toc__script:nth-child(odd) {
+  grid-column: 1 / -1;
+  min-height: 120px;
+}
+
+.toc__script-text {
+  font-family: var(--font-display);
+  font-stretch: 88%;
+  font-style: italic;
+  font-weight: 380;
+  font-size: clamp(22px, 2.1vw, 31px);
+  line-height: 1.22;
+  color: #553b3d;
+  text-align: center;
+  white-space: pre-line;
+  transform: rotate(-5deg) translateX(8%);
+}
+
+.toc__script-text:not(.editable) {
+  text-indent: 0;
+}
+
+:root[lang='ar'] .toc__script-text {
+  font-family: var(--font-script);
+  font-style: normal;
+  font-size: clamp(26px, 2.3vw, 34px);
+  line-height: 1.55;
+  transform: rotate(4deg) translateX(-6%);
+}
+
+@media (max-width: 900px) {
+  .toc__head {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+}
+
+@media (max-width: 720px) {
+  .toc__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .toc__item {
+    grid-template-columns: 36% 1fr auto;
+    min-height: 136px;
+  }
+
+  .toc__script {
+    min-height: 120px;
+  }
+}
