@@ -11,16 +11,19 @@ import Button from './Button.jsx';
 import SplitText from './SplitText.jsx';
 import { ChevronIcon } from './Icons.jsx';
 
-// Depth and scroll drift for the cover. Writes CSS variables only:
+// Depth for the cover. Writes CSS variables only:
 //   --hx / --hy  where the scene leans, -1…1 (eased): the cursor on a
 //                computer; on a phone the phone's tilt where the browser
 //                shares it, otherwise a slow drift of its own
-//   --sy         how far the cover has scrolled, in px
+// They are set on the image and the torn sheet only, so the rest of the
+// cover isn't restyled on every frame. Scrolling needs no script at all:
+// the image is fixed behind the page (see .hero__media-inner).
 function useCoverMotion() {
   const ref = useRef(null);
   useEffect(() => {
     const el = ref.current;
     if (!el || reducedMotion()) return undefined;
+    const targets = [...el.querySelectorAll('.hero__media, .hero__sheet')];
     const aim = { x: 0, y: 0 };
     const now = { x: 0, y: 0 };
     let raf = 0;
@@ -28,8 +31,10 @@ function useCoverMotion() {
     const tick = () => {
       now.x += (aim.x - now.x) * 0.06;
       now.y += (aim.y - now.y) * 0.06;
-      el.style.setProperty('--hx', now.x.toFixed(4));
-      el.style.setProperty('--hy', now.y.toFixed(4));
+      targets.forEach((t) => {
+        t.style.setProperty('--hx', now.x.toFixed(4));
+        t.style.setProperty('--hy', now.y.toFixed(4));
+      });
       raf = Math.abs(aim.x - now.x) + Math.abs(aim.y - now.y) > 0.001 ? requestAnimationFrame(tick) : 0;
     };
     const move = (e) => {
@@ -42,16 +47,6 @@ function useCoverMotion() {
       aim.x = 0;
       aim.y = 0;
       if (!raf) raf = requestAnimationFrame(tick);
-    };
-
-    let scrollRaf = 0;
-    const scroll = () => {
-      if (scrollRaf) return;
-      scrollRaf = requestAnimationFrame(() => {
-        scrollRaf = 0;
-        const y = Math.min(window.scrollY, el.offsetHeight + 200);
-        el.style.setProperty('--sy', y.toFixed(1));
-      });
     };
 
     // phones
@@ -91,17 +86,13 @@ function useCoverMotion() {
       });
       io.observe(el);
     }
-    window.addEventListener('scroll', scroll, { passive: true });
-    scroll();
     return () => {
       cancelAnimationFrame(raf);
-      cancelAnimationFrame(scrollRaf);
       cancelAnimationFrame(drift);
       io?.disconnect();
       window.removeEventListener('deviceorientation', onTilt);
       el.removeEventListener('pointermove', move);
       el.removeEventListener('pointerleave', leave);
-      window.removeEventListener('scroll', scroll);
     };
   }, []);
   return ref;
@@ -116,6 +107,10 @@ export default function Hero() {
   // the short introduction under the name is the About Me title + line
   const setAbout = (key) => (value) => actions.setSite(['about', key], value);
   const rtl = lang === 'ar';
+  const words = pick(hero.tags, lang)
+    .split('\n')
+    .map((w) => w.trim())
+    .filter(Boolean);
   const ref = useCoverMotion();
   useEffect(() => pauseWhenAway(ref.current), [ref]);
 
@@ -158,15 +153,27 @@ export default function Hero() {
         {editing ? (
           <EditableText as="p" multiline className="hero__tags" value={hero.tags} onChange={set('tags')} />
         ) : (
-          <p className="hero__tags">
-            {pick(hero.tags, lang)
-              .split('\n')
-              .map((line, i, all) => (
-                <span key={i} className={i === all.length - 1 ? 'is-strong' : ''} style={{ '--i': i }}>
-                  {line}
+          // the words run past like a news ticker: two identical halves,
+          // so when one has slid by, the other is exactly in its place
+          <div className="hero__ticker">
+            <p className="sr-only">{words.join(rtl ? '، ' : ', ')}</p>
+            <div className="hero__ticker-track" aria-hidden="true">
+              {[0, 1].map((half) => (
+                <span className="hero__ticker-set" key={half}>
+                  {[0, 1, 2].map((round) =>
+                    words.map((word, i) => (
+                      <span
+                        key={`${round}-${i}`}
+                        className={`hero__ticker-item ${i === words.length - 1 ? 'is-strong' : ''}`}
+                      >
+                        {word}
+                      </span>
+                    ))
+                  )}
                 </span>
               ))}
-          </p>
+            </div>
+          </div>
         )}
       </div>
 

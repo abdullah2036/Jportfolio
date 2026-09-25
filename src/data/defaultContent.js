@@ -66,6 +66,8 @@ export const defaultContent = {
   version: 1,
   site: {
     name: L('جنى سقطي', 'Jana Soqati'),
+    // the line in the header bar (the name already fills the cover)
+    brand: L('حيث تزهر الأفكار الهادفة', 'Where Meaningful Ideas Bloom'),
     tagline: L('من الفكرة إلى المعنى', 'From Ideas to Meaning'),
     hero: {
       eyebrow: L('من الفكرة إلى المعنى', 'Ideas to Meaning'),

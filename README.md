@@ -100,6 +100,9 @@ receives a file and returns a URL, and the rest of the site already accepts plai
 ## Language & fonts
 
 - Default language, Arabic digits (٠١٢ vs 012), the footer edit link and the petals are in `src/config.js`.
+- The line in the header bar (**حيث تزهر الأفكار الهادفة / Where Meaningful Ideas Bloom**) is
+  `site.brand` in `src/data/defaultContent.js`. The name itself stays on the cover, in the
+  browser tab title and in the footer.
 - `?lang=en` or `?lang=ar` in the address opens that language (useful for sharing).
 - **Thmanyah (ثمانية)** from https://font.thmanyah.com (free for personal and commercial use)
   is self-hosted in `public/fonts/thmanyah/`: Serif Display for headings, Serif Text
@@ -140,7 +143,10 @@ and `src/lib/motion.js`.
   - List rows fill with a burgundy wipe on hover, and a hairline slides under the menu.
   - The series topics light up in turn as you scroll past the artwork, which opens
     out from a card. Once images are tagged with topics, the artwork swaps to match.
-  - The cover image shrinks into a card as you scroll, and the header condenses.
+  - The cover image stays fixed behind the page as you scroll (like the banner), so it
+    glides without any jitter, and the header condenses.
+  - The cover's words (علوم · إبداع · ناس · غد ألطف) run across the image like a news
+    ticker, and pause while the pointer rests on them. Edit them in Edit Mode.
   - A project's four supporting images sit in a gallery set apart at its foot, and widen
     on hover (accordion). On the home page only the last project shows its gallery; every
     project's own page shows it. Archive pieces arc in.

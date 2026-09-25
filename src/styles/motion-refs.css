@@ -219,7 +219,7 @@
   scale: 0.9;
 }
 
-/* ---------- cover: the image rises in, then shrinks into a card on scroll ---------- */
+/* ---------- cover: the image rises in ---------- */
 
 .hero__media-inner > .slot {
   animation: media-rise 1.6s cubic-bezier(0.7, 0, 0.2, 1) 0.1s both;
@@ -242,12 +242,6 @@
   from {
     scale: 1.22;
   }
-}
-
-.hero__media-inner {
-  transform: translate3d(0, calc(var(--sy, 0) * 0.22px), 0) scale(calc(1 - min(var(--sy, 0) / 4200, 0.08)));
-  transform-origin: 50% 0;
-  overflow: hidden;
 }
 
 /* ---------- words un-blur one by one ---------- */

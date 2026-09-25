@@ -100,7 +100,7 @@ export default function Header() {
     <header className={`site-header ${scrolled ? 'is-scrolled' : ''} ${menuOpen ? 'is-menu' : ''}`}>
       <div className="site-header__inner wrap">
         <a className="site-header__logo" href={href()} onClick={(e) => go(e, '')} data-petals="6">
-          {pick(content.site.name, lang)}
+          {pick(content.site.brand || content.site.name, lang)}
         </a>
 
         <nav className="site-header__nav" aria-label={t.menu} ref={nav} onMouseLeave={() => setHovered('')}>

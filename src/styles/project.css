@@ -504,6 +504,11 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* a website project: say what it is first, then show the live site */
+  .feature--site .feature__info {
+    order: -1;
+  }
+
   .feature__media .slot,
   .site-preview {
     aspect-ratio: 4 / 4.4;

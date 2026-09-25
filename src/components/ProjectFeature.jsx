@@ -34,7 +34,7 @@ export default function ProjectFeature({ project, gallery = true }) {
   const showFull = editing || !project.link || project.items.length > 0 || slides.length > 0;
 
   return (
-    <section className="feature" data-nav="work">
+    <section className={`feature ${project.link ? 'feature--site' : ''}`} data-nav="work">
       <div className="wrap">
         <ProjectBar project={project} />
 

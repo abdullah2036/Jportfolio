@@ -188,11 +188,40 @@ html[data-transition='page']::view-transition-new(root) {
   cursor: auto;
 }
 
+/* The cover image is a window onto a scene fixed to the screen: as you
+   scroll, the page glides over it (the same as the banner further down).
+   The browser does this on its own, so it stays perfectly smooth. The scene
+   starts 12px higher so it still fills the space when the header condenses. */
+.hero__media {
+  clip-path: inset(0);
+}
+
 .hero__media-inner {
-  position: absolute;
-  inset: 0;
-  transform: translate3d(0, calc(var(--sy, 0) * 0.22px), 0);
+  position: fixed;
+  top: calc(var(--header-h) - 12px);
+  height: calc(clamp(620px, calc(100svh - var(--header-h)), 980px) + 12px);
+  inset-inline-start: 36%;
+  inset-inline-end: 0;
+  overflow: hidden;
   will-change: transform;
+}
+
+.hero[data-away] .hero__media-inner {
+  visibility: hidden;
+}
+
+/* phones: the image sits on top of the page and simply scrolls with it */
+@media (max-width: 760px) {
+  .hero__media {
+    clip-path: none;
+  }
+
+  .hero__media-inner {
+    position: absolute;
+    inset: 0;
+    height: auto;
+    will-change: auto;
+  }
 }
 
 .hero__media-inner > .slot {
@@ -204,11 +233,6 @@ html[data-transition='page']::view-transition-new(root) {
 .hero__sheet {
   transform: translate3d(calc(var(--hx, 0) * 5px), calc(var(--hy, 0) * 3px), 0);
   will-change: transform;
-}
-
-.hero__copy {
-  transform: translate3d(0, calc(var(--sy, 0) * -0.1px), 0);
-  opacity: calc(1 - var(--sy, 0) / 1100);
 }
 
 .hero__tags span {

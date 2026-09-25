@@ -20,11 +20,13 @@
   gap: 24px;
 }
 
+/* the header line ("Where Meaningful Ideas Bloom") scales with the screen
+   so it always leaves room for the menu */
 .site-header__logo {
   font-family: var(--font-display);
   font-stretch: var(--display-stretch);
   font-weight: 500;
-  font-size: 30px;
+  font-size: clamp(19px, 2.2vw, 28px);
   line-height: 1;
   color: var(--burgundy-ink);
   white-space: nowrap;
@@ -32,7 +34,7 @@
 }
 
 :root[lang='ar'] .site-header__logo {
-  font-size: 27px;
+  font-size: clamp(21px, 2.1vw, 26px);
   font-weight: 600;
 }
 
@@ -314,6 +316,13 @@
   min-height: 100vh;
 }
 
+/* mid-size screens: the header line, menu and tools share less room */
+@media (max-width: 1100px) {
+  .site-header__tools {
+    margin-inline-start: 22px;
+  }
+}
+
 @media (max-width: 860px) {
   :root {
     --header-h: 64px;
@@ -334,7 +343,11 @@
   }
 
   .site-header__logo {
-    font-size: 24px;
+    font-size: clamp(15px, 4.2vw, 24px);
+  }
+
+  :root[lang='ar'] .site-header__logo {
+    font-size: clamp(17px, 5vw, 24px);
   }
 
   .search__results button {
