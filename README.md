@@ -141,12 +141,12 @@ and `src/lib/motion.js`.
   - The series topics light up in turn as you scroll past the artwork, which opens
     out from a card. Once images are tagged with topics, the artwork swaps to match.
   - The cover image shrinks into a card as you scroll, and the header condenses.
-  - A project's other images sit in a gallery carousel at its foot: arrows, mouse drag or
-    swipe, snapping slide by slide. In Edit Mode, **إضافة إطار / Add frame** adds more.
-    Archive pieces arc in.
+  - A project's four supporting images sit in a gallery set apart at its foot, and widen
+    on hover (accordion). On the home page only the last project shows its gallery; every
+    project's own page shows it. Archive pieces arc in.
 - **On phones** the mouse effects have touch versions:
   - The cover scene tilts with the phone where the browser allows it, and drifts slowly on its own otherwise.
-  - Chapter cards lean as they scroll past, and the project gallery runs edge to edge.
+  - Chapter cards lean as they scroll past, and the gallery images become a swipeable strip.
   - Buttons ripple where they are tapped, and list rows fill while pressed.
   - Tapping the name makes it ripple, and a tap on the paper lets a couple of petals fall.
 - Devices set to **reduce motion** get a calm, still version automatically.
@@ -160,7 +160,7 @@ and `src/lib/motion.js`.
 | About Me (after the cover)  | `About`                            | `about.css`                |
 | Banner behind the page      | `Vista`                            | `motion-refs.css`          |
 | 02 Table of Contents        | `TableOfContents`                  | `contents.css`             |
-| 03 Single project           | `ProjectFeature`, `ProjectBar`, `Gallery` | `project.css`       |
+| 03 Single project           | `ProjectFeature`, `ProjectBar`     | `project.css`              |
 | 04 Series / collection      | `ProjectSeries`                    | `project.css`              |
 | 05 Archive + image viewer   | `Archive`, `Lightbox`              | `archive.css`              |
 | Website preview             | `SitePreview`                      | `project.css`              |

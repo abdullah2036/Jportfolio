@@ -14,6 +14,8 @@ export default function Home({ target, routeKey }) {
   const { ordered } = usePortfolio();
   const first = useRef(true);
   const showcase = ordered.filter((p) => p.showcase);
+  // the image gallery appears once, under the last project on the page
+  const lastFeature = showcase.filter((p) => p.layout !== 'series').pop();
 
   useEffect(() => {
     const id = TARGETS[target];
@@ -36,7 +38,11 @@ export default function Home({ target, routeKey }) {
       <Vista />
       <TableOfContents />
       {showcase.map((p) =>
-        p.layout === 'series' ? <ProjectSeries key={p.id} project={p} /> : <ProjectFeature key={p.id} project={p} />
+        p.layout === 'series' ? (
+          <ProjectSeries key={p.id} project={p} />
+        ) : (
+          <ProjectFeature key={p === lastFeature ? `${p.id}:gallery` : p.id} project={p} gallery={p === lastFeature} />
+        )
       )}
     </>
   );

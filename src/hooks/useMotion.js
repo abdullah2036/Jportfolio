@@ -71,3 +71,22 @@ export function useMagnetic(strength = 0.22, limit = 8) {
   }, [strength, limit]);
   return ref;
 }
+
+/**
+ * For a horizontal strip that scrolls on phones: the child nearest the
+ * middle is marked data-center="1" so CSS can bring it forward.
+ */
+export function useCenterFocus(selector) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const strip = ref.current;
+    if (!strip || !('IntersectionObserver' in window)) return undefined;
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => (e.target.dataset.center = e.intersectionRatio > 0.6 ? '1' : '0')),
+      { root: strip, threshold: [0, 0.6, 1] }
+    );
+    strip.querySelectorAll(selector).forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [selector]);
+  return ref;
+}

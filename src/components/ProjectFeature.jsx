@@ -6,24 +6,19 @@ import Button from './Button.jsx';
 import Reveal from './Reveal.jsx';
 import ProjectBar from './ProjectBar.jsx';
 import Parallax from './Parallax.jsx';
+import { useCenterFocus } from '../hooks/useMotion.js';
 import SitePreview from './SitePreview.jsx';
-import Gallery from './Gallery.jsx';
-import { imageStore } from '../store/imageStore.js';
 
 // 03 — A single project: dominant artwork, story beside it, and its other
-// images in a gallery carousel at the foot.
-export default function ProjectFeature({ project }) {
+// images in a gallery set apart at the foot. On the home page only the last
+// project shows its gallery (see Home.jsx); a project's own page always does.
+export default function ProjectFeature({ project, gallery = true }) {
   const { lang, t, editing, actions, openArchive, openViewer } = usePortfolio();
   const { index, category } = useChapter(project.categoryId);
+  const strip = useCenterFocus('.feature__support-item'); // phones: a swipeable strip
   const set = (key) => (value) => actions.setProject(project.id, { [key]: value });
   const setSupporting = (k) => (ref) =>
     actions.setProject(project.id, (p) => ({ supporting: p.supporting.map((x, j) => (j === k ? ref : x)) }));
-  const addFrame = () => actions.setProject(project.id, (p) => ({ supporting: [...p.supporting, null] }));
-  const removeFrame = (k) => {
-    const ref = project.supporting[k];
-    actions.setProject(project.id, (p) => ({ supporting: p.supporting.filter((_, j) => j !== k) }));
-    if (ref) imageStore.remove(ref);
-  };
 
   const title = pick(project.title, lang);
   const images = [project.image, ...project.supporting].filter(Boolean);
@@ -107,14 +102,27 @@ export default function ProjectFeature({ project }) {
           </Reveal>
         </div>
 
-        <Gallery
-          images={project.supporting}
-          title={title}
-          onChange={setSupporting}
-          onOpen={openAt}
-          onAdd={addFrame}
-          onRemoveFrame={removeFrame}
-        />
+        {gallery && (
+          <div className="feature__gallery">
+            <Reveal as="h3" className="display feature__gallery-title">
+              {t.gallery}
+            </Reveal>
+            <div className="feature__support" ref={strip}>
+              {project.supporting.map((ref, k) => (
+                <Reveal key={k} delay={k * 110} className="feature__support-item reveal-image">
+                  <Parallax depth={4}>
+                    <ImageSlot
+                      value={ref}
+                      onChange={setSupporting(k)}
+                      alt={title}
+                      onOpen={(rect) => openAt(ref, rect)}
+                    />
+                  </Parallax>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

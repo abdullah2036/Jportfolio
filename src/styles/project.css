@@ -238,175 +238,26 @@
   }
 }
 
-/* ---------- the project gallery: a carousel at the foot of the project ---------- */
-
-.gallery {
-  --dir: 1;
-  margin-top: clamp(56px, 7vw, 110px);
+/* the project's other images, set apart at the foot of the section */
+.feature__gallery {
+  margin-top: clamp(64px, 8vw, 120px);
   padding-top: clamp(22px, 2.6vw, 34px);
   border-top: 1px solid var(--hairline);
 }
 
-[dir='rtl'] .gallery {
-  --dir: -1;
-}
-
-.gallery__head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 20px;
+.feature__gallery-title {
   margin-bottom: clamp(18px, 2vw, 28px);
-}
-
-.gallery__title {
   font-size: clamp(28px, 3vw, 44px);
 }
 
-.gallery__nav {
-  display: flex;
-  gap: 10px;
-  transition: opacity 0.4s var(--ease);
-}
-
-.gallery__arrow {
-  display: inline-grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 1px solid rgba(125, 38, 65, 0.28);
-  color: var(--burgundy);
-  transition: background 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease), opacity 0.35s var(--ease);
-}
-
-.gallery__arrow:hover:not(:disabled) {
-  background: var(--burgundy);
-  border-color: var(--burgundy);
-  color: #fbeff0;
-}
-
-.gallery__arrow:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
-
-/* the strip runs on past the page margin, like a gallery wall that continues */
-.gallery__track {
-  display: flex;
-  gap: clamp(12px, 1.6vw, 24px);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  margin-inline-end: calc((100vw - 100%) / -2);
-  padding-inline-end: calc((100vw - 100%) / 2);
-  padding-block: 4px;
-  cursor: grab;
-}
-
-.gallery__track::-webkit-scrollbar {
-  display: none;
-}
-
-.gallery__track.is-dragging {
-  scroll-snap-type: none;
-  cursor: grabbing;
-  user-select: none;
-}
-
-.gallery__track.is-dragging img {
-  pointer-events: none;
-}
-
-.gallery__track:focus-visible {
-  outline-offset: 6px;
-}
-
-.is-editing .gallery__track {
-  cursor: auto;
-}
-
-.gallery__slide {
-  position: relative;
-  flex: 0 0 clamp(260px, 36%, 540px);
-  margin: 0;
-  scroll-snap-align: start;
-}
-
-.gallery__slide .slot {
-  aspect-ratio: 4 / 3;
-}
-
-.gallery__slide img {
-  -webkit-user-drag: none;
-}
-
-.gallery__num {
-  margin-top: 10px;
-  font-family: var(--font-label);
-  font-size: 12.5px;
-  letter-spacing: 0.16em;
-  color: var(--muted);
-}
-
-.gallery__drop {
-  position: absolute;
-  z-index: 4;
-  top: 10px;
-  inset-inline-end: 10px;
+.feature__support {
   display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(250, 246, 241, 0.94);
-  color: var(--burgundy-ink);
-  box-shadow: 0 1px 3px rgba(60, 35, 35, 0.2);
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(10px, 1.4vw, 22px);
 }
 
-.gallery__add {
-  flex: 0 0 clamp(150px, 16%, 220px);
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  gap: 10px;
-  margin-bottom: 30px;
-  border: 1px dashed rgba(125, 38, 65, 0.35);
-  color: var(--burgundy);
-  font-family: var(--font-label);
-  font-size: 14px;
-  transition: background 0.3s var(--ease);
-}
-
-.gallery__add:hover {
-  background: rgba(125, 38, 65, 0.05);
-}
-
-/* how far along the strip you are */
-.gallery__progress {
-  position: relative;
-  height: 1px;
-  margin-top: clamp(14px, 1.6vw, 22px);
-  background: var(--hairline);
-  overflow: hidden;
-  transition: opacity 0.4s var(--ease);
-}
-
-.gallery__progress > span {
-  position: absolute;
-  inset-block: 0;
-  inset-inline-start: 0;
-  width: calc(var(--thumb, 1) * 100%);
-  background: var(--burgundy);
-  translate: calc(var(--dir) * var(--progress, 0) * (1 / var(--thumb, 1) - 1) * 100%) 0;
-}
-
-/* everything fits on screen: nothing to scroll */
-.gallery.is-still .gallery__nav,
-.gallery.is-still .gallery__progress {
-  opacity: 0;
-  pointer-events: none;
+.feature__support .slot {
+  aspect-ratio: 4 / 2.95;
 }
 
 /* ---------- 04 · series / collection ---------- */
@@ -659,8 +510,8 @@
     max-height: 78svh;
   }
 
-  .gallery__slide {
-    flex-basis: 62%;
+  .feature__support {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .series__top {
@@ -726,14 +577,5 @@
 
   .series__note {
     width: 190px;
-  }
-
-  .gallery__slide {
-    flex-basis: 82%;
-  }
-
-  .gallery__arrow {
-    width: 40px;
-    height: 40px;
   }
 }
