@@ -16,7 +16,7 @@ The `dist/` folder is a static site. No server code is needed.
 
 ## Hosting (GitHub Pages)
 
-The site is live at **https://abdullah2036.github.io/jana-soqati-portfolio/**.
+The site is live at **https://abdullah2036.github.io/Jportfolio/**.
 
 Every push to `main` rebuilds it automatically (`.github/workflows/deploy.yml` builds the
 site and publishes `dist/` to the `gh-pages` branch). The update is live about a
